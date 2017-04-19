@@ -98,7 +98,8 @@ export default {
       this.photo= house.photo,
       this.address= house.address,
       this.price= house.price,
-      this.location= house.location,
+      this.lat= house.lat,
+      this.long= house.long,
       this.id= house.id
     },
     ...mapActions([
