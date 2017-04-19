@@ -2,7 +2,7 @@ const db = require('../models');
 
 let dataHouse = (req, res) => {
   db.house
-    .findAll({})
+    .findAll({order: '"updatedAt" DESC'})
     .then((result) => {
       res.send(result)
     })
@@ -24,7 +24,14 @@ let createDataHouse = (req, res) => {
   db.house
     .create(req.body)
     .then((result) => {
-      res.send(result)
+      db.house
+        .findAll({order: '"updatedAt" DESC'})
+        .then((houses) => {
+          res.send(houses)
+        })
+        .catch((err) => {
+          res.send(err.message)
+        })
     })
     .catch((err) => {
       res.send(err.message)
@@ -34,10 +41,17 @@ let updateDataHouse = (req, res) => {
   db.house
     .update(
       {title: req.body.title, description: req.body.description, photo: req.body.photo, address: req.body.address, price: req.body.price, lat: req.body.lat, long: req.body.long},
-      {where: {id: req.params.id}}
+      {where: {id: req.body.id}}
     )
     .then((result) => {
-      res.send(result)
+      db.house
+        .findAll({order: '"updatedAt" DESC'})
+        .then((houses) => {
+          res.send(houses)
+        })
+        .catch((err) => {
+          res.send(err.message)
+        })
     })
     .catch((err) => {
       res.send(err.message)
@@ -49,7 +63,14 @@ let deleteDataHouse = (req, res) => {
       {where: {id: req.params.id}}
     )
     .then((result) => {
-      res.send(result)
+      db.house
+        .findAll({order: '"updatedAt" DESC'})
+        .then((houses) => {
+          res.send(houses)
+        })
+        .catch((err) => {
+          res.send(err.message)
+        })
     })
     .catch((err) => {
       res.send(err.message)
