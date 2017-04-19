@@ -13,7 +13,7 @@
     <el-dialog title="New house information" v-model="dialogFormVisible">
       <el-form>
         <el-form-item label="" prop="desc">
-          <el-input placeholder="Title question" v-model="title"></el-input>
+          <el-input placeholder="Title" v-model="title"></el-input>
         </el-form-item>
         <el-form-item label="" prop="desc">
           <el-input placeholder="Description" v-model="description"></el-input>
@@ -28,12 +28,15 @@
           <el-input placeholder="Price" v-model="price"></el-input>
         </el-form-item>
         <el-form-item label="" prop="desc">
-          <el-input placeholder="Location" v-model="location"></el-input>
+          <el-input placeholder="Latitude" v-model="lat"></el-input>
+        </el-form-item>
+        <el-form-item label="" prop="desc">
+          <el-input placeholder="Longitude" v-model="long"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="newHouseAction({title: title, description: description, photo: photo, address:address, price:price, lat:11, long:11}); dialogFormVisible = false">Submit</el-button>
+        <el-button type="primary" @click="newHouseAction({title: title, description: description, photo: photo, address:address, price:price, lat:lat, long:long}); dialogFormVisible = false">Submit</el-button>
       </span>
     </el-dialog>
   </el-row>
@@ -50,7 +53,8 @@ export default {
       photo: '',
       address: '',
       price: '',
-      location: ''
+      lat: '',
+      long: ''
     }
   },
   methods: {
